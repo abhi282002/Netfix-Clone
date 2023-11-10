@@ -7,32 +7,31 @@ import {
 } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { PHOTO_URL } from "../utils/constant";
+import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const fullName = useRef(null);
-  const selector = useSelector((store) => store.user);
+
   const toggleSignInForm = () => {
     setIsSignIn(!isSignIn);
     setErrorMessage("");
   };
   const handleLogin = () => {
     const isValid = isSignIn
-      ? Validate(undefined, email.current.value, password.current.value)
+      ? Validate(fullName, email.current.value, password.current.value)
       : Validate(
           fullName.current.value,
           email.current.value,
           password.current.value
         );
 
-    console.log(fullName);
+    console.log("fullname", fullName);
     setErrorMessage(isValid);
     if (isValid) return;
     if (!isSignIn) {
@@ -48,8 +47,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: fullName.current.value,
-            photoURL:
-              "https://media.licdn.com/dms/image/D5603AQEwMPEYHXZzmA/profile-displayphoto-shrink_400_400/0/1698630644090?e=1704931200&v=beta&t=C4J1iDkZkLfmIZnkCvRc9nf_jtj28A2towRdfcrxQHE",
+            photoURL: PHOTO_URL,
           })
             .then(() => {
               //profile updated
@@ -62,14 +60,12 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-
-              navigate("/browse");
             })
             .catch((error) => {
               //an Error occured
               setErrorMessage(error.message);
             });
-          console.log(user);
+          // console.log(user);
 
           // ...
         })
@@ -90,7 +86,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
+
           // ...
         })
         .catch((error) => {

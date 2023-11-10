@@ -1,5 +1,5 @@
 export const Validate = (fullName, email, password) => {
-  if (fullName.length === 0) return "Please Enter Your Name";
+  if (!fullName) return "Please Enter Your Name";
   let isEmailValid =
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
       email
