@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import useTrailerVideo from "../hooks/useTrailerVideo";
 const VideoBackground = ({ MovieId }) => {
   useTrailerVideo(MovieId);
-  const trailerVideo = useSelector((store) => store.movie?.TrailerVideo);
+  const trailerVideo = useSelector((store) => store.movie?.TrailerMovies);
   if (!trailerVideo) return;
 
   return (
@@ -12,7 +12,8 @@ const VideoBackground = ({ MovieId }) => {
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo.key +
-          "?&autoplay=1&mute=1&rel=0"
+          "?&autoplay=1&mute=1&rel=0&loop=1&controls=0&playlist=" +
+          trailerVideo.key
         }
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -24,3 +24,5 @@
 # Form Validation
 
 - If you have very big form then always use a library Known as Formik
+
+make alt tag dynamic in movieCards

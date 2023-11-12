@@ -10,3 +10,6 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NDMxMTM5NzNjNGY0NWExMjZhYWQ1YjM1NmU3NGIwMCIsInN1YiI6IjY1NGQ5ZDEwNjdiNjEzMDBlNWRkNWU2OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.G2MW7iO4As5H5X7jVlKXKAylZxsk7xeMf52N61CdHrE",
   },
 };
+export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
+export const BG_URL =
+  "https://assets.nflxext.com/ffe/siteui/vlv3/77d35039-751f-4c3e-9c8d-1240c1ca6188/cf244808-d722-428f-80a9-052acdf158ec/IN-en-20231106-popsignuptwoweeks-perspective_alpha_website_large.jpg";

@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { PHOTO_URL } from "../utils/constant";
+import { BG_URL, PHOTO_URL } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 const Login = () => {
@@ -31,7 +31,6 @@ const Login = () => {
           password.current.value
         );
 
-    console.log("fullname", fullName);
     setErrorMessage(isValid);
     if (isValid) return;
     if (!isSignIn) {
@@ -65,7 +64,6 @@ const Login = () => {
               //an Error occured
               setErrorMessage(error.message);
             });
-          // console.log(user);
 
           // ...
         })
@@ -85,7 +83,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
 
           // ...
         })
@@ -100,11 +97,7 @@ const Login = () => {
     <div className="relative w-full">
       <Header />
       <div className="absolute">
-        <img
-          className="sm:h-screen lg:w-screen"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/77d35039-751f-4c3e-9c8d-1240c1ca6188/cf244808-d722-428f-80a9-052acdf158ec/IN-en-20231106-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="Logo"
-        />
+        <img className="sm:h-screen lg:w-screen" src={BG_URL} alt="Logo" />
       </div>
       <div className="w-full  absolute text-white right-0 top-0">
         <form

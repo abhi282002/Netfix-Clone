@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
@@ -10,6 +10,8 @@ import { LOGO } from "../utils/constant";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isSearchPage = location.pathname === "/browse/search";
   const user = useSelector((store) => store.user);
   const handleLogOut = () => {
     signOut(auth)
@@ -35,9 +37,9 @@ const Header = () => {
             photoURL: photoURL,
           })
         );
-        navigate("/browse");
+        isSearchPage ? navigate("/browse/search") : navigate("/browse");
       } else {
-        // User is signed out
+        // User   navigate("/browse");is signed out
         // ...
         dispatch(removeUser());
         navigate("/");
@@ -48,7 +50,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="w-full flex  justify-between absolute z-10 px-8 py-2 bg-gradient-to-b from-black/100 bg-black/100 ">
+      <div className="w-full flex  justify-between absolute z-10 px-8 py-2 bg-gradient-to-b from-black/100 opacity-100">
         <img
           className="w-40 bg-gradient-to-b from-black"
           src={LOGO}
@@ -56,6 +58,14 @@ const Header = () => {
         />
         {user && (
           <div className="flex mt-1 gap-x-4 lg:gap-x-6 z-10">
+            {!isSearchPage && (
+              <button
+                onClick={() => navigate("/browse/search")}
+                className=" h-[45px] text-white rounded-md px-4 font-medium bg-purple/75 "
+              >
+                GPT Search
+              </button>
+            )}
             <img
               className="w-[45px] h-[45px] rounded-3xl"
               src={user?.photoURL}
@@ -63,7 +73,7 @@ const Header = () => {
             />
             <button
               onClick={handleLogOut}
-              className="w-[100px] h-[45px] border p-2 bg-blue-600  border-blue-600 rounded-md"
+              className=" h-[45px] border py-2 px-8 text-white font-semibold bg-yellow  border-yellow rounded-md"
             >
               Log Out
             </button>
