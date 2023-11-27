@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
 import { onAuthStateChanged } from "firebase/auth";
-import { LOGO } from "../utils/constant";
+import { LOGO, multiLang } from "../utils/constant";
+import { addLanguage } from "../utils/langSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,6 +67,21 @@ const Header = () => {
                 GPT Search
               </button>
             )}
+            {isSearchPage && (
+              <select
+                className="h-[35px] mt-1 px-5 font-medium"
+                onChange={(e) => dispatch(addLanguage(e.target.value))}
+              >
+                {multiLang.map((name) => {
+                  return (
+                    <option key={name.identifier} value={name.identifier}>
+                      {name.name}
+                    </option>
+                  );
+                })}
+              </select>
+            )}
+
             <img
               className="w-[45px] h-[45px] rounded-3xl"
               src={user?.photoURL}

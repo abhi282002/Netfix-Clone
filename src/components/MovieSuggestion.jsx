@@ -1,7 +1,25 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
+import MovieList from "./MovieList";
 const MovieSuggestion = () => {
-  return <div></div>;
+  const { gptSearchResult, tmdbSearchResult } = useSelector(
+    (store) => store.gpt
+  );
+  if (!gptSearchResult || !tmdbSearchResult) return null;
+
+  return (
+    <div className="">
+      {gptSearchResult.map((movieName, index) => {
+        return (
+          <MovieList
+            key={movieName}
+            title={movieName}
+            movies={tmdbSearchResult[index]}
+          />
+        );
+      })}
+    </div>
+  );
 };
 
 export default MovieSuggestion;

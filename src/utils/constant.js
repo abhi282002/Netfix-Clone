@@ -13,3 +13,15 @@ export const API_OPTIONS = {
 export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500";
 export const BG_URL =
   "https://assets.nflxext.com/ffe/siteui/vlv3/77d35039-751f-4c3e-9c8d-1240c1ca6188/cf244808-d722-428f-80a9-052acdf158ec/IN-en-20231106-popsignuptwoweeks-perspective_alpha_website_large.jpg";
+
+export const multiLang = [
+  { identifier: "en", name: "English" },
+  {
+    identifier: "hin",
+    name: "Hindi",
+  },
+  {
+    identifier: "sp",
+    name: "Spanish",
+  },
+];

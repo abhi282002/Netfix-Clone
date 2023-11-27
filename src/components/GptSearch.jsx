@@ -4,12 +4,14 @@ import MovieSuggestion from "./MovieSuggestion";
 import { BG_URL } from "../utils/constant";
 const GptSearch = () => {
   return (
-    <div>
-      <div className="absolute -z-20">
-        <img className="sm:h-screen lg:w-screen" src={BG_URL} alt="Logo" />
+    <div className="h-full">
+      <div className="h-[2000px] border border-bermuda -z-20 absolute">
+        <img className=" h-full lg:w-screen" src={BG_URL} alt="Logo" />
       </div>
-      <SearchBar />
-      <MovieSuggestion />
+      <div className="absolute">
+        <SearchBar />
+        <MovieSuggestion />
+      </div>
     </div>
   );
 };
