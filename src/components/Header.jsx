@@ -51,7 +51,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="w-full flex  justify-between absolute z-10 px-8 py-2 bg-gradient-to-b from-black/100 opacity-100">
+      <div className="w-screen flex  justify-between absolute z-10 px-8 py-2 bg-gradient-to-b from-black/100 opacity-100">
         <img
           className="w-40 bg-gradient-to-b from-black"
           src={LOGO}

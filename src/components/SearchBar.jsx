@@ -46,10 +46,10 @@ const SearchBar = () => {
     );
   };
   return (
-    <div className="pt-28  w-screen h-full flex justify-center items-center">
+    <div className="pt-28 w-screen h-full flex justify-center items-center">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className=" px-2 w-full   gap-2 flex justify-center "
+        className="w-full   gap-2 flex justify-center "
       >
         <input
           ref={searchText}
