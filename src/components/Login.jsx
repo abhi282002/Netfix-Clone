@@ -112,26 +112,26 @@ const Login = () => {
               ref={fullName}
               type="text"
               placeholder="Full Name"
-              className="p-3 my-4 focus:text-yellow text-yellow w-[290px] ml-12 bg-gray-700 rounded-sm"
+              className="p-3 my-4 text-black  w-[290px] ml-12 bg-gray-700 rounded-sm"
             />
           )}
           <input
             ref={email}
             type="text"
             placeholder="Email"
-            className="p-3 focus:text-yellow text-yellow w-[290px] my-4 ml-12 bg-gray-700 rounded-sm"
+            className="p-3 text-black  w-[290px] my-4 ml-12 bg-gray-700 rounded-sm"
           />
 
           <input
             ref={password}
             type="password"
             placeholder="Password"
-            className="p-3 focus:text-yellow text-yellow my-4 w-[290px] ml-12 bg-gray-700 rounded-sm"
+            className="p-3  text-black my-4 w-[290px] ml-12 bg-gray-700 rounded-sm"
           />
           <p className="text-red-600 font-bold ml-10">{errorMessage}</p>
           <button
             onClick={handleLogin}
-            className="font-bold   p-3 my-6 w-[290px] ml-12 bg-red-600 rounded-md"
+            className="font-bold   p-3 my-6 w-[290px] ml-12 bg-yellow rounded-md"
           >
             {isSignIn ? "Sign In" : "Sign Up"}
           </button>

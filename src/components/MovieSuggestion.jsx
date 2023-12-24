@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
+import Shimmer from "./Shimmer";
 const MovieSuggestion = () => {
   const { gptSearchResult, tmdbSearchResult } = useSelector(
     (store) => store.gpt
@@ -13,7 +14,7 @@ const MovieSuggestion = () => {
         {gptSearchResult.map((movieName, index) => {
           return (
             <MovieList
-              key={movieName}
+              key={movieName + index}
               title={movieName}
               movies={tmdbSearchResult[index]}
             />

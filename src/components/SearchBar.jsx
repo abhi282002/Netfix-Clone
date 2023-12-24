@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import openai from "../utils/openai";
 import { useDispatch, useSelector } from "react-redux";
 import { addGptSearchResult } from "../utils/gptSlice";
 import { API_OPTIONS } from "../utils/constant";
 import lang from "../utils/languageConstant";
+import Shimmer from "./Shimmer";
 const SearchBar = () => {
   const searchText = useRef("");
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const language = useSelector((store) => store.lang.language);
   if (!language) return null;
@@ -22,6 +24,7 @@ const SearchBar = () => {
     return json.results;
   };
   const handleGptSearch = async () => {
+    setLoading(false);
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
@@ -38,6 +41,7 @@ const SearchBar = () => {
     });
 
     const tmdbSearchResult = await Promise.all(tmdbPromiseResult);
+    setLoading(true);
     dispatch(
       addGptSearchResult({
         gptSearchResult: gptSearchResult,
@@ -46,7 +50,7 @@ const SearchBar = () => {
     );
   };
   return (
-    <div className="pt-28 w-screen h-full flex justify-center items-center">
+    <div className="pt-28 w-screen h-full flex flex-col justify-center items-center">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="w-full   gap-2 flex justify-center "
@@ -64,6 +68,7 @@ const SearchBar = () => {
           {lang[language].search}
         </button>
       </form>
+      {!loading && <Shimmer />}
     </div>
   );
 };
